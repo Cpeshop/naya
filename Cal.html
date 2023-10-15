@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>การคำนวณยาแก้ไข้พาราเซตามอลในเด็ก</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #333;
+            border-bottom: 2px solid #f4f4f4;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            color: #333;
+        }
+
+        button {
+            display: inline-block;
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #result {
+             margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+            background-color: #e6f7ff; /* สีพื้นหลังสีฟ้าอ่อน */
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #b3e0ff; /* ขอบสีฟ้าอ่อน */
+        }
+
+        #duration {
+        margin-top: 10px;
+        color: #d9534f; /* สีแดง */
+        font-weight: bold; /* ตัวหนา */
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>การคำนวณยาแก้ไข้ในเด็ก</h2>
+        <form id="calculator">
+            <label>
+                <i class="fas fa-weight fa-lg"></i> น้ำหนักเด็ก (kg):
+                <input type="number" id="weight" required>
+            </label>
+            <label>
+                <i class="fas fa-pills fa-lg"></i> ความเข้มข้นของยา (mg/ml):
+                <input type="number" id="concentration" required>
+            </label>
+            <button type="submit">คำนวณ</button>
+        </form>
+        <div id="result"></div> <div id="duration"></div>
+
+    </div>
+
+    <script>
+        document.getElementById('calculator').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const weight = parseFloat(document.getElementById('weight').value);
+            const concentration = parseFloat(document.getElementById('concentration').value);
+
+            const dosage = weight * 10; 
+            const dosageMax = weight * 15; 
+
+            document.getElementById('result').innerHTML = `ยาที่ควรให้: ${dosage} - ${dosageMax} mg หรือ ${(dosage / (concentration / 5)).toFixed(2)} - ${(dosageMax / (concentration / 5)).toFixed(2)} ml`;
+
+const recommendedDays = 5; // ตัวอย่าง: แนะนำให้กินไม่เกิน 5 วัน
+    document.getElementById('duration').innerHTML = `***แนะนำให้กินยาไม่เกิน ${recommendedDays} วัน ***`;
+
+        });
+    </script>
+</body>
+
+</html>
